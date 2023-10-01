@@ -1,0 +1,4 @@
+apiVersion: v2
+name: flask-redis-app
+description: A Helm chart for Flask-Redis application
+version: 0.1.0

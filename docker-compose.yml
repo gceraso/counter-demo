@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  flask-redis-app:
+    build:
+      context: ./counter
+      dockerfile: Dockerfile
+    env_file:
+    - .env
+#    environment:
+ #     - REDIS_USERNAME=redis_user
+  #    - REDIS_PASSWORD=password
+   ##  - REDIS_PORT=6379
+     # - REDIS_DB=0
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+  redis:
+    image: redis:latest
+    hostname: redis
+    env_file:
+    - .env
+    ports:
+      - "6379:6379"
+    #command: redis-server /etc/redis/redis.conf
+    command: redis-server --appendonly yes --requirepass $REDIS_PASSWORD
+    #--masteruser $${REDIS_USERNAME} --requirepass $${REDIS_PASSWORD}

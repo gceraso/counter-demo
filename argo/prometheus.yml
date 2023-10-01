@@ -1,0 +1,15 @@
+project: default
+source:
+  repoURL: 'https://prometheus-community.github.io/helm-charts'
+  targetRevision: 25.0.0
+  helm:
+    valueFiles:
+      - values.yaml
+    values: 'namespaces:'
+  chart: prometheus
+destination:
+  namespace: monitoring
+  name: in-cluster
+syncPolicy:
+  syncOptions:
+    - CreateNamespace=true

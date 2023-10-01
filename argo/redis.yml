@@ -1,0 +1,21 @@
+project: default
+source:
+  repoURL: 'https://charts.bitnami.com/bitnami'
+  targetRevision: 18.1.1
+  helm:
+    valueFiles:
+      - values.yaml
+    parameters:
+      - name: auth.password
+        value: password
+      - name: architecture
+        value: standalone
+  chart: redis
+destination:
+  namespace: counter
+  name: in-cluster
+syncPolicy:
+  syncOptions:
+    - Validate=false
+    - PruneLast=true
+    - CreateNamespace=true

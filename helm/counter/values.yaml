@@ -1,0 +1,4 @@
+image:
+  repository: ghcr.io/gceraso/counter
+  tag: main-56648f1
+hostname: counter.ceraso.me

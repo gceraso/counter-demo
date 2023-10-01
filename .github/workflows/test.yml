@@ -1,0 +1,27 @@
+name: Build and Test
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - counter/*.py
+      - counter/requirements.txt
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        working-directory: ./counter
+        run: pip install --trusted-host pypi.python.org -r requirements.txt
+      - name: Run Python tests
+        working-directory: ./counter
+        run: |
+          pip install -U pytest \
+          pytest

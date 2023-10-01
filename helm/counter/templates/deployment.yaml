@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-redis-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask-redis-app
+  template:
+    metadata:
+      labels:
+        app: flask-redis-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: '/metrics'
+        prometheus.io/port: "8080"
+    spec:
+      imagePullSecrets:
+        - name: github-registry-secret
+      containers:
+        - name: flask-redis-app
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          readinessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          env:
+            - name: REDIS_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: redis-config
+                  key: user
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-config
+                  key: password
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: redis-config
+                  key: host
+            - name: REDIS_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: redis-config
+                  key: port
+            - name: REDIS_DB
+              valueFrom:
+                secretKeyRef:
+                  name: redis-config
+                  key: db
+          ports:
+            - containerPort: 8080

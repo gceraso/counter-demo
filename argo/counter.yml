@@ -1,0 +1,11 @@
+project: default
+source:
+  repoURL: 'https://github.com/gceraso/felfel.git'
+  path: helm/counter
+  targetRevision: main
+destination:
+  namespace: counter
+  name: in-cluster
+syncPolicy:
+  syncOptions:
+    - CreateNamespace=true

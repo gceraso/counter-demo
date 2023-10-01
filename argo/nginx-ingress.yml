@@ -1,0 +1,11 @@
+project: default
+source:
+  repoURL: 'https://helm.nginx.com/stable'
+  targetRevision: 1.0.0
+  chart: nginx-ingress
+destination:
+  namespace: ingress
+  name: in-cluster
+syncPolicy:
+  syncOptions:
+    - CreateNamespace=true
