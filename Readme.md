@@ -67,7 +67,7 @@ While this is a great exercise, I decided to improve upon the original goal. So 
 
 ## Why use what? 
 
-**Linode/LKE** - Simply put, it's cheap and easy. Great for testing and demoing personal projects.
+**Linode/LKE** - Simply put, it's cheap and easy. Great for testing and demoing personal projects.  
 **NGINX Ingress** - Simply and standard, especially for a simple example. I've been a fan of Kong for deeper usage of an ingress. 
 **LetsEncrypt** - Easily automatible cert generation, and free.  
 
