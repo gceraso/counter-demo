@@ -80,9 +80,8 @@ While this is a great exercise, I decided to improve upon the original goal. So 
 ## TODO
 
 - Move /metrics to another port/route 
-- Create a Terraform module for LKE deployment.
 - Automate Terraform deployments.
 - Add actual tests for python GitHub Actions.
-- While I was able to backup and restore all of ArgoCD, I'd like to be able to save yamls based on each application and/or project.
+- While I was able to back up and restore all of ArgoCD, I'd like to be able to save YAMLs based on each application and/or project.
 - Build either Prometheus graphs or frontend it with Grafana. 
 - Turns out there's a lot of bots out there that are already scraping the new app. I want to add log aggregation to see if I can find some interesting patterns.
